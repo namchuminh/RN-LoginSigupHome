@@ -2,11 +2,11 @@ import React from "react"
 import {View, Text, Image, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView, TextInput } from 'react-native'
 import {logo, primary} from '../constant/index.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
-function SignUp(props){
+function SignUp({navigation}){
     return (
         <View style={styles.container}>
             <View style={styles.top}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
                 <Icon name="angle-left" size={30} color="black" style={{
                     fontWeight: '100',
                     marginTop: 20,
@@ -16,7 +16,7 @@ function SignUp(props){
                 
             </View>
             <View style={styles.mid}>
-                <Text style = {styles.ca}>Sign in</Text>
+                <Text style = {styles.ca}>Log in</Text>
                 <TextInput style = {styles.input} placeholder={'E-mail or phone number'}></TextInput>
                 <TextInput style = {styles.input} placeholder={'Password'}></TextInput>
             </View>

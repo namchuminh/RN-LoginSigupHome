@@ -1,5 +1,5 @@
-import { StatusBar, SafeAreaView, StyleSheet } from 'react-native';
-import { Welcome, SignUp, LogIn} from './screens/index.js';
+import { StatusBar, SafeAreaView, StyleSheet } from 'react-native'
+import Navigator from './navigation/Navigator.js'
 
 export default function App() {
   return (
@@ -11,7 +11,7 @@ export default function App() {
       showHideTransition={'fade'}
       hidden={false} 
       />
-      <LogIn/>
+      <Navigator/>
     </SafeAreaView>
   );
 }

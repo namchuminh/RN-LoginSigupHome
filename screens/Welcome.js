@@ -1,7 +1,7 @@
 import React from "react"
 import {View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
 import {logo, primary} from '../constant/index.js'
-function Welcome(props){
+function Welcome({ navigation }){
     return (
         <View style={styles.container}>
             <View style={styles.top}>
@@ -13,10 +13,10 @@ function Welcome(props){
                 <Text style = {styles.title2}>Welcome to your app. Build your own social network in minutes.</Text>
             </View>
             <View style={styles.bottom}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('LogIn')}>
                     <Text style = {styles.LogIn}>Log In</Text>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
                     <Text style = {styles.SignUp}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
