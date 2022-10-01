@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     top: {
         flex: 40,
         backgroundColor: 'white',
+        justifyContent: 'center'
     },
     mid: {
         flex: 20,
@@ -80,7 +81,6 @@ const styles = StyleSheet.create({
     },
     logo: {
         alignSelf: 'center',
-        marginTop: 180,
         width: 100,
         height: 100,
     }
