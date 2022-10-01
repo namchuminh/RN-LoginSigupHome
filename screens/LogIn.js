@@ -1,15 +1,14 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { View, Text, Image, TouchableOpacity, StyleSheet, StatusBar, SafeAreaView, TextInput } from 'react-native'
 import { logo, primary } from '../constant/index.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { AuthContext } from "../context/AuthContext.js";
 
 function LogIn({ navigation }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const handleLogin = (e) => {
-        alert(userName + " " + password)
-    }
+    const {login} = useContext(AuthContext)
     return (
         <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>        
         <View style={styles.container}>
@@ -25,12 +24,12 @@ function LogIn({ navigation }) {
             </View>
             <View style={styles.mid}>
                 <Text style={styles.ca}>Log in</Text>
-                <TextInput style={styles.input} placeholder={'Username'} onChangeText={setUserName} />
-                <TextInput style={styles.input} placeholder={'Password'} onChangeText={setPassword} secureTextEntry={true} />
+                <TextInput style={styles.input} placeholder={'Username'} value={userName} onChangeText={text => setUserName(text)} />
+                <TextInput style={styles.input} placeholder={'Password'} value={password} onChangeText={text => setPassword(text)} secureTextEntry={true} />
             </View>
             <View style={styles.bottom}>
                 <TouchableOpacity>
-                    <Text style={styles.li} onPress={(e) => handleLogin(e) }>Log in</Text>
+                    <Text style={styles.li} onPress={(e) => login(userName, password) }>Log in</Text>
                 </TouchableOpacity>
                 <Text style={styles.or}>OR</Text>
                 <TouchableOpacity>
