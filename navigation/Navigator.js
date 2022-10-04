@@ -10,8 +10,7 @@ function Navigator(props){
     return(
         <NavigationContainer>
             <Stack.Navigator >
-                
-                {userInfo.username ? (
+                {userInfo.access ? (
                     <>
                         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
                     </>

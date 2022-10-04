@@ -8,7 +8,7 @@ import { AuthContext } from "../context/AuthContext.js";
 function LogIn({ navigation }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const {login} = useContext(AuthContext)
+    const {login, error} = useContext(AuthContext)
     return (
         <KeyboardAwareScrollView contentContainerStyle={{flex: 1}}>        
         <View style={styles.container}>
@@ -26,6 +26,7 @@ function LogIn({ navigation }) {
                 <Text style={styles.ca}>Log in</Text>
                 <TextInput style={styles.input} placeholder={'Username'} value={userName} onChangeText={text => setUserName(text)} />
                 <TextInput style={styles.input} placeholder={'Password'} value={password} onChangeText={text => setPassword(text)} secureTextEntry={true} />
+                <Text>{error}</Text>
             </View>
             <View style={styles.bottom}>
                 <TouchableOpacity>
