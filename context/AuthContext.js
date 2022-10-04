@@ -15,7 +15,7 @@ export const AuthProvider = ({children}) => {
     })
     .then(function (response) {
       setUserInfo(response.data)
-      AsyncStorage.setItem('@userInfo', JSON.stringify(userInfo))
+      storeData(response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -23,9 +23,18 @@ export const AuthProvider = ({children}) => {
 
   }
 
+  const storeData = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value)
+      await AsyncStorage.setItem('@storage_Key', jsonValue)
+    } catch (e) {
+      // saving error
+    }
+  }
+
   const getData = async () => {
     try {
-      const jsonValue = await AsyncStorage.getItem('@userInfo')
+      const jsonValue = await AsyncStorage.getItem('@storage_Key')
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch(e) {
       // error reading value
@@ -34,12 +43,17 @@ export const AuthProvider = ({children}) => {
 
   const getInfoUser = async () => {
     const token = await getData()
-    console.log(token)
-    // axios.get('http://10.0.2.2:8000/api/user/', {
-    //   headers: {
-    //     Authorization: 'Bearer ' + token //the token is a variable which holds the token
-    //   }
-    // })
+    axios.get('http://10.0.2.2:8000/api/user/', {
+      headers: {
+        Authorization: 'Bearer ' + token.access //the token is a variable which holds the token
+      }
+    })
+    .then(function (response) {
+      console.log(response.data)
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
   return (
     <AuthContext.Provider value={{
